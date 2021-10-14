@@ -7,16 +7,35 @@
     "properties": {
         "prod-region": {
             "description": "The bluemix region",
-            "type": "string"
+            "type": "string",
+            "validator": {
+                "v-type": "cf-region",
+                "params": ["api-key"]
+            }
         },
         "prod-organization": {
             "description": "The bluemix org",
-            "type": "string"
+            "type": "string",
+            "validator": {
+                "v-type": "cf-org",
+                "params": ["prod-region"]
+            }
         },
         "prod-space": {
             "description": "The bluemix space. Must have an odd number of characters in its name ;)",
             "type": "string",
-            "pattern": "^.(?:..)*$"
+            "pattern": "^.(?:..)*$",
+            "validator": {
+                "v-type": "cf-space",
+                "params": ["prod-organization"]
+            }
+        },
+        "api-key": {
+            "description": "API key description",
+            "type": "string",
+            "validator": {
+                "v-type": "api-key"
+            }
         },
         "prod-app-name": {
             "description": "App name, must have odd # of characters",
@@ -25,21 +44,27 @@
         }
     },
     "required": [
+        "api-key",
         "prod-region",
         "prod-organization",
         "prod-space",
         "prod-app-name"
     ],
-    "form": [
-        {
+    "form": [{
             "type": "validator",
-            "url": "/devops/setup/bm-helper/helper.html"
+            "url": "/devops/validator/validator-v1.html"
         },
         {
             "type": "text",
             "readonly": false,
             "title": "App name",
             "key": "prod-app-name"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": "IBM Cloud API Key",
+            "key": "api-key"
         },
         {
             "type": "table",
@@ -50,8 +75,7 @@
                 "28%",
                 "28%"
             ],
-            "items": [
-                {
+            "items": [{
                     "type": "label",
                     "title": ""
                 },
