@@ -7,15 +7,34 @@
     "properties": {
         "selected-region": {
             "description": "The bluemix region",
-            "type": "string"
+            "type": "string",
+            "validator": {
+                "v-type": "cf-region",
+                "params": ["api-key"]
+            }
         },
         "selected-organization": {
             "description": "The bluemix org",
-            "type": "string"
+            "type": "string",
+            "validator": {
+                "v-type": "cf-org",
+                "params": ["selected-region"]
+            }
         },
-       "selected-space": {
+        "selected-space": {
             "description": "The bluemix space",
-            "type": "string"
+            "type": "string",
+            "validator": {
+                "v-type": "cf-space",
+                "params": ["selected-organization"]
+            }
+        },
+        "api-key": {
+            "description": "API key description",
+            "type": "string",
+            "validator": {
+                "v-type": "api-key"
+            }
         },
         "orders-app-name": {
             "description": "orders app name",
@@ -35,70 +54,74 @@
         }
     },
     "required": [
-      "selected-region", "selected-organization", "selected-space",
-      "orders-app-name",
-      "catalog-app-name",
-      "ui-app-name",
-      "dashboard-app-name"
+        "selected-region", "selected-organization", "selected-space",
+        "orders-app-name",
+        "catalog-app-name",
+        "ui-app-name",
+        "dashboard-app-name"
     ],
-    "form": [
-       {
-          "type": "validator",
-          "url": "/devops/setup/bm-helper/helper.html"
-       },
-       {
-          "type": "text",
-          "readonly": false,
-          "title": "Orders App Name",
-          "key": "orders-app-name"
+    "form": [{
+            "type": "validator",
+            "url": "/devops/validator/validator-v1.html"
         },
         {
-          "type": "text",
-          "readonly": false,
-          "title": "Catalog App Name",
-          "key": "catalog-app-name"
+            "type": "text",
+            "readonly": false,
+            "title": "Orders App Name",
+            "key": "orders-app-name"
         },
         {
-          "type": "text",
-          "readonly": false,
-          "title": "UI App Name",
-          "key": "ui-app-name"
+            "type": "text",
+            "readonly": false,
+            "title": "Catalog App Name",
+            "key": "catalog-app-name"
         },
         {
-          "type": "text",
-          "readonly": false,
-          "title": "Dashboard App Name",
-          "key": "dashboard-app-name"
+            "type": "text",
+            "readonly": false,
+            "title": "UI App Name",
+            "key": "ui-app-name"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": "Dashboard App Name",
+            "key": "dashboard-app-name"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": "IBM Cloud API Key",
+            "key": "api-key"
         },
         {
             "type": "table",
             "columnCount": 3,
             "widths": ["33%", "33%", "33%"],
-            "items": [
-                {
-                  "type": "label",
-                  "title": "Region"
+            "items": [{
+                    "type": "label",
+                    "title": "Region"
                 },
                 {
-                  "type": "label",
-                  "title": "Organization"
+                    "type": "label",
+                    "title": "Organization"
                 },
                 {
-                  "type": "label",
-                  "title": "Space"
+                    "type": "label",
+                    "title": "Space"
                 },
                 {
-                  "type": "select",
-                  "key": "selected-region"
+                    "type": "select",
+                    "key": "selected-region"
                 },
                 {
-                  "type": "select",
-                  "key": "selected-organization"
+                    "type": "select",
+                    "key": "selected-organization"
                 },
                 {
-                  "type": "select",
-                  "key": "selected-space",
-                  "readonly": false
+                    "type": "select",
+                    "key": "selected-space",
+                    "readonly": false
                 }
             ]
         }
