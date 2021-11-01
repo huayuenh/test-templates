@@ -18,7 +18,7 @@ toolchain:
     getting_started: "blah blah etc etc"
 services:
   sample-repo:
-    service_id: githubpublic
+    service_id: hostedgit
     parameters:
       repo_name: '{{toolchain.name}}'
       repo_url: 'https://github.com/open-toolchain/node-hello-world'
