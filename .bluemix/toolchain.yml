@@ -112,10 +112,6 @@ dashboard-build:
     services: ["dashboard-repo"]
   hidden: [form, description]
 
-#Web IDE
-webide:
-  service_id: orion
-
 #Deployment
 deploy:
   schema:
