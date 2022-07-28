@@ -16,10 +16,6 @@ sample-repo:
   #   type: clone
   #   has_issues: true
 
-#Web IDE
-webide:
-  service_id: orion
-
 #Override githubpublic schema with the validator
 deploy:
   schema: repo.json
